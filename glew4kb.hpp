@@ -230,6 +230,7 @@ void main()
 #include <algorithm>
 #include <set>
 #include <string>
+#include <iterator>
 #include <iostream>
 #include <fstream>
 #include <utility>
@@ -417,10 +418,16 @@ struct list_of_exts
 			return;
 		}
 
-		std::transform
-		(
-			exts.begin(), exts.end(), exts.begin(), &glfnc_name_from_glew_name
-		);
+		{
+			string_set tmp_exts;
+			std::transform
+			(
+				exts.begin(), exts.end(),
+				std::inserter(tmp_exts, tmp_exts.begin()),
+				&glfnc_name_from_glew_name
+			);
+			exts.swap(tmp_exts);
+		}
 
 		const char* exc_list[] = {GLEW4KB_EXCLUDE_LIST};
 		for(int i=0; i<sizeof(exc_list)/sizeof(exc_list[0]); ++i)
