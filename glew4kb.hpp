@@ -263,6 +263,11 @@ void main()
 #	define GLEW4KB_METHOD_ID 0
 #endif
 
+//GLEW4KB_CUSTOM_BEFORE_FUNCが#defineしてあると下記関数をOpenGLの拡張関数を呼ぶ直前に呼ぶ.
+#ifdef GLEW4KB_CUSTOM_BEFORE_FUNC
+	namespace glew4kb{void custom_before_func(const char* name, int line, const char* file);}
+#endif
+
 namespace glew4kb
 {
 template<typename T>
@@ -273,6 +278,10 @@ struct before_after_check
 	{
 #ifdef GLEW4KB_LIST
 		detail::list_of_exts::get_instance().regist(name);
+#endif
+
+#ifdef GLEW4KB_CUSTOM_BEFORE_FUNC
+		custom_before_func(name, line, file);
 #endif
 	}
 
