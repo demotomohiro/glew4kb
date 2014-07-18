@@ -57,7 +57,8 @@
 #	define GLEW4KB_EXCLUDE_LIST	\
 		"glIsShader", "glGetShaderiv", "glGetShaderInfoLog",	\
 		"glIsProgram", "glGetProgramiv", "glGetProgramInfoLog",	\
-		"glCheckFramebufferStatus"
+		"glCheckFramebufferStatus",								\
+		"glDebugMessageCallback", "glDebugMessageControl"
 
 
 	・サンプルコード
@@ -98,7 +99,7 @@ void main()
 }
 
 	・問題点
-		- VC++2008以外のコンパイラ, 環境でテストしていない.
+		- VC++2008とVC++2012以外のコンパイラ, 環境でテストしていない.
 			Linux用コードがあるけどテストしてない.
 		- GLEWの実装詳細に依存している.
 			未来のGLEWでも動作するかはわからない.
@@ -165,7 +166,8 @@ void main()
 #	define GLEW4KB_EXCLUDE_LIST	\
 		"glIsShader", "glGetShaderiv", "glGetShaderInfoLog",	\
 		"glIsProgram", "glGetProgramiv", "glGetProgramInfoLog",	\
-		"glCheckFramebufferStatus"
+		"glCheckFramebufferStatus",								\
+		"glDebugMessageCallback", "glDebugMessageControl"
 
 	- Sample code
 #ifdef NDEBUG
@@ -206,7 +208,7 @@ void main()
 }
 
 	- Known problems
-		- This code is not tested with any compilers except VC++2008.
+		- This code is not tested with any compilers except VC++2008 and VC++2012.
 			There are code for Linux, but they are not tested.
 		- glew4kb depends on implementation detail of the GLEW.
 			It mignt not work in future GLEW.
@@ -256,7 +258,8 @@ void main()
 #	define GLEW4KB_EXCLUDE_LIST	\
 		"glIsShader", "glGetShaderiv", "glGetShaderInfoLog",	\
 		"glIsProgram", "glGetProgramiv", "glGetProgramInfoLog",	\
-		"glCheckFramebufferStatus"
+		"glCheckFramebufferStatus",								\
+		"glDebugMessageCallback", "glDebugMessageControl"
 #endif
 
 #ifndef GLEW4KB_METHOD_ID
